@@ -27,8 +27,17 @@ private:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* MeshComp;
 	UPROPERTY(EditAnywhere)
+	float damage=35;
+	UPROPERTY(EditAnywhere)
 	class UProjectileMovementComponent* ProjectileMovementComp;
-
+	UPROPERTY(EditAnywhere)
+	class UParticleSystem* HitParticle;
+	UPROPERTY(EditAnywhere)
+	class UParticleSystemComponent* SmokingTrailComp;
+	UPROPERTY(EditAnywhere)
+	class USoundBase* LaunchSound;
+	UPROPERTY(EditAnywhere)
+	class USoundBase* HitSound;
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* HitedActor,UPrimitiveComponent* HitedComp, FVector NormalImpulse, const FHitResult& HitResult);
 };

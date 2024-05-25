@@ -40,3 +40,8 @@ bool ATurret::IsInFireRange(){
 	}
 	return false;
 }
+
+void ATurret::Destruction(){
+	Super::Destruction();
+	Destroy();
+}

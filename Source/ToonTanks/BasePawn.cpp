@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Projectile.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -21,6 +22,12 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint-> SetupAttachment(TurretMesh);
 }
 
+void ABasePawn::Destruction()
+{
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DestructionParticle,GetActorLocation());
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(),DestructionSound,GetActorLocation());
+}
+
 
 void ABasePawn::TurretAim(FVector LookAtTarget){
 	FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation();
@@ -33,5 +40,6 @@ void ABasePawn::TurretAim(FVector LookAtTarget){
 
 void ABasePawn::Fire(){
 	// DrawDebugSphere(GetWorld(),ProjectileSpawnPoint->GetComponentLocation(),5.f,12,FColor::Red,false,3);
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass,ProjectileSpawnPoint->GetComponentLocation(),TurretMesh->GetComponentRotation());
+	auto projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass,ProjectileSpawnPoint->GetComponentLocation(),TurretMesh->GetComponentRotation());
+	projectile->SetOwner(this);
 }

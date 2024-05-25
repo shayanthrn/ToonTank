@@ -16,6 +16,7 @@ class TOONTANKS_API ATurret : public ABasePawn
 	
 public:
 	virtual void Tick(float DeltaTime) override;
+	void Destruction();
 
 protected:
 	// Called when the game starts or when spawned

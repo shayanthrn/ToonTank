@@ -14,6 +14,7 @@ class TOONTANKS_API ABasePawn : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
+	void Destruction();
 	
 protected:
 	void TurretAim(FVector LookAtTarget);
@@ -31,4 +32,8 @@ private:
 	USceneComponent* ProjectileSpawnPoint;
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<class AProjectile> ProjectileClass;
+	UPROPERTY(EditAnywhere)
+	class UParticleSystem* DestructionParticle;
+	UPROPERTY(EditAnywhere)
+	class USoundBase* DestructionSound;
 };

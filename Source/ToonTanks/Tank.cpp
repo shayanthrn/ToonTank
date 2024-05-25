@@ -33,7 +33,6 @@ void ATank::Tick(float DeltaTime)
     if(PlayerController){
         FHitResult HitResult;
         PlayerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, HitResult);
-        DrawDebugSphere(GetWorld(), HitResult.ImpactPoint,100.f,12,FColor::Black, false,-1.f);
         if(HitResult.GetActor()){
             TurretAim(HitResult.ImpactPoint);
         }
@@ -77,4 +76,10 @@ void ATank::Turn(float Value)
         Deltarotation.Yaw = Value*TurnRate*UGameplayStatics::GetWorldDeltaSeconds(this);
         AddActorLocalRotation(Deltarotation, true);
     }
+}
+
+void ATank::Destruction(){
+    Super::Destruction();
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
 }
