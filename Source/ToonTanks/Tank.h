@@ -40,4 +40,5 @@ private:
 	void Turn(float Value);
 	UPROPERTY()
 	class APlayerController* PlayerController;
+	bool reverseMove=false;
 };

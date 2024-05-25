@@ -17,6 +17,7 @@ public:
 	
 protected:
 	void TurretAim(FVector LookAtTarget);
+	void Fire();
 
 
 private:
@@ -28,4 +29,6 @@ private:
 	UStaticMeshComponent* TurretMesh;
 	UPROPERTY(EditAnywhere)
 	USceneComponent* ProjectileSpawnPoint;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<class AProjectile> ProjectileClass;
 };

@@ -47,6 +47,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
     PlayerInputComponent->BindAxis(TEXT("MoveForward"),this,&ATank::Move);
     PlayerInputComponent->BindAxis(TEXT("Turn"),this,&ATank::Turn);
+    PlayerInputComponent->BindAction(TEXT("Fire"),IE_Pressed,this,&ATank::Fire);
 }
 
 void ATank::Move(float Value)
@@ -57,12 +58,21 @@ void ATank::Move(float Value)
         Deltavector.X = Value*MoveSpeed*UGameplayStatics::GetWorldDeltaSeconds(this);
         AddActorLocalOffset(Deltavector, true);
     }
+    if(Value >= 0){
+        reverseMove = false;
+    }
+    else{
+        reverseMove = true;
+    }
 }
 
 void ATank::Turn(float Value)
 {
     
     if(Value != 0){
+        if(reverseMove){
+            Value *= -1;
+        }
         FRotator Deltarotation = FRotator::ZeroRotator;
         Deltarotation.Yaw = Value*TurnRate*UGameplayStatics::GetWorldDeltaSeconds(this);
         AddActorLocalRotation(Deltarotation, true);
