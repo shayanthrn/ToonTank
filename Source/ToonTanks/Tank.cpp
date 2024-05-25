@@ -82,4 +82,5 @@ void ATank::Destruction(){
     Super::Destruction();
     SetActorHiddenInGame(true);
     SetActorTickEnabled(false);
+    bIsAlive = false;
 }

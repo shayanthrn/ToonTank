@@ -38,6 +38,8 @@ private:
 	class USoundBase* LaunchSound;
 	UPROPERTY(EditAnywhere)
 	class USoundBase* HitSound;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UCameraShakeBase> HitCS;
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* HitedActor,UPrimitiveComponent* HitedComp, FVector NormalImpulse, const FHitResult& HitResult);
 };

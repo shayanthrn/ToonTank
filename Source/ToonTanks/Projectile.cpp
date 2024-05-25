@@ -7,6 +7,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/DamageType.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Camera/CameraShakeBase.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -44,9 +45,11 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* HitedActor,UPrimit
 	auto damageType = UDamageType::StaticClass();
 	if(HitedActor && HitedActor!=this && HitedActor != owner){
 		UGameplayStatics::ApplyDamage(HitedActor, damage, controller, this, damageType);
+		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCS);
 		Destroy();
 	}
 	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticle,HitResult.ImpactPoint);
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(),HitSound,GetActorLocation());
+
 }
 

@@ -24,6 +24,7 @@ public:
 
 	void Destruction();
 	class APlayerController* GetPController() const {return PlayerController;};
+	bool bIsAlive=true;
 
 protected:
 	// Called when the game starts or when spawned

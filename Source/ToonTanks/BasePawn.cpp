@@ -26,6 +26,9 @@ void ABasePawn::Destruction()
 {
 	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), DestructionParticle,GetActorLocation());
 	UGameplayStatics::PlaySoundAtLocation(GetWorld(),DestructionSound,GetActorLocation());
+	if(DestructionCS){
+		GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(DestructionCS);
+	}
 }
 
 

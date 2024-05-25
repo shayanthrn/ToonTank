@@ -36,4 +36,6 @@ private:
 	class UParticleSystem* DestructionParticle;
 	UPROPERTY(EditAnywhere)
 	class USoundBase* DestructionSound;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UCameraShakeBase> DestructionCS;
 };

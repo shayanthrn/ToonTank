@@ -27,7 +27,7 @@ void ATurret::BeginPlay()
 
 void ATurret::CheckFireCondition(){
 	if(Tank){
-		if(IsInFireRange()){
+		if(IsInFireRange() && Tank->bIsAlive){
 			Fire();
 		}
 	}
